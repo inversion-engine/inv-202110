@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  redis:
+    network_mode: host
+    build:
+      context: ./docker/redis
+      dockerfile: Dockerfile
+  coturn:
+    network_mode: host
+    build:
+      context: ./docker/coturn
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
