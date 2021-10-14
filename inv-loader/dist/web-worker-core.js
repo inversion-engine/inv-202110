@@ -1,0 +1,1 @@
+onmessage=o=>{const s="Worker: "+o.data;console.log(s),postMessage(s)};

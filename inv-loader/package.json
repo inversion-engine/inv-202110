@@ -3,15 +3,19 @@
   "version": "0.0.1",
   "description": "entrypoint loading javascript / html for initializing a browser context to begin acting as an inversion engine node.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-ui-worker-core": "npx webpack --config configs/ui-worker-core.webpack.config.js",
+    "build-web-worker-core": "npx webpack --config configs/web-worker-core.webpack.config.js",
+    "build": "npm run-script build-web-worker-core && npm run-script build-ui-worker-core",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gen-cert": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem",
+    "start": "npm run-script build && npx http-server dist -p 12888 -a 127.0.0.1 --cors -S"
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "webpack": "^5.58.1",
-    "webpack-cli": "^4.9.0",
-    "webpack-dev-server": "^4.3.1"
+    "arraybuffer-loader": "^1.0.8",
+    "http-server": "^13.0.2",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0"
   },
-  "dependencies": {
-    "msgpack-lite": "^0.1.26"
-  }
+  "dependencies": {}
 }
